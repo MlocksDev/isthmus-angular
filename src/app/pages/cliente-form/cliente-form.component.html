@@ -1,0 +1,171 @@
+<div class="row  mt-2">
+    <div class="col-10">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+            </ol>
+        </nav>
+        <h2 *ngIf="!isUpdating">Formulário de cadastro</h2>
+        <h2 *ngIf="isUpdating">Atualização de cadastro</h2>
+    </div>
+    <div class="col-2">
+        <a routerLink="/home" type="button" class="btn btn-secondary float-right mt-2">
+            Voltar
+        </a>
+    </div>
+</div>
+<form [formGroup]="clienteForm">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="nome">Nome *</label>
+                <input type="text" formControlName="nome"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.nome.errors}" class="form-control"
+                    id="nome">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.nome.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="cpf">CPF *</label>
+                <input type="text" formControlName="cpf"
+                    [ngClass]="{'border-danger': (submitted && clienteForm.controls.cpf.errors) || showMessageCpf}"
+                    class="form-control" class="form-control" id="cpf" [dropSpecialCharacters]="false"
+                    mask="000.000.000-00" [showMaskTyped]="true" placeHolderCharacter="_" (keyup)="searchCpf($event)"
+                    [readOnly]="isUpdating">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.cpf.errors}">
+                    Obrigatório
+                </small>
+                <small class="form-text text-danger d-none" [ngClass]="{'d-block':showMessageCpf}">
+                    CPF já utilizado
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="dataNascimento">Data Nascimento *</label>
+                <input type="text" formControlName="dataNascimento"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.dataNascimento.errors}"
+                    class="form-control" id="dataNascimento" [dropSpecialCharacters]="false" mask="00/00/0000"
+                    [showMaskTyped]="true" placeHolderCharacter="_">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.dataNascimento.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="sexo">Sexo *</label>
+                <select class="form-control" formControlName="sexo"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.sexo.errors}" id="sexo">
+                    <option value="">Selecione</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                </select>
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.sexo.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="telefone">Telefone </label>
+                <input type="text" formControlName="telefone" class="form-control" id="telefone"
+                    [dropSpecialCharacters]="false" mask="(00)00000-0000" [showMaskTyped]="true"
+                    [clearIfNotMatch]="true" placeHolderCharacter="_">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="email">Email </label>
+                <input type="text" formControlName="email" class="form-control" id="email">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="cep">CEP </label>
+                <input type="text" formControlName="cep" class="form-control" id="cep" [dropSpecialCharacters]="false"
+                    mask="00000-000" [showMaskTyped]="true" placeHolderCharacter="_" (keyup)='searchCep()'>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="logradouro">Logradouro *</label>
+                <input type="text" formControlName="logradouro"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.logradouro.errors}"
+                    class="form-control" id="logradouro">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.logradouro.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="complemento">Complemento </label>
+                <input type="text" formControlName="complemento" class="form-control" id="complemento">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="bairro">Bairro *</label>
+                <input type="text" formControlName="bairro"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.bairro.errors}" class="form-control"
+                    id="bairro">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.bairro.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="cidade">Cidade *</label>
+                <input type="text" formControlName="cidade"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.cidade.errors}" class="form-control"
+                    id="cidade">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.cidade.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="uf">UF *</label>
+                <input type="text" formControlName="uf"
+                    [ngClass]="{'border-danger': submitted && clienteForm.controls.uf.errors}" class="form-control"
+                    id="uf">
+                <small class="form-text text-danger d-none"
+                    [ngClass]="{'d-block': submitted && clienteForm.controls.uf.errors}">
+                    Obrigatório
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <a class="btn-lg btn-danger" (click)="save()">
+                Salvar
+            </a>
+        </div>
+    </div>
+</form>
