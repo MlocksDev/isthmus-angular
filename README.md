@@ -2,6 +2,32 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
 
+## Install Dependencies
+
+**1. Check if you have a recent version of [Node.js](https://nodejs.org/) (which comes bundled with [npm](https://www.npmjs.com/), a JavaScript package manager):**
+
+```bash
+$ node -v
+```
+
+```bash
+$ npm -v
+```
+
+**2. In the _project root directory_ install all the dependencies and libs:**
+
+```bash
+$ npm install
+```
+
+**3. Run the following command:**
+
+```bash
+$ npm run start
+```
+
+**4. And then access [http://localhost:4200/](http://localhost:4200/) on your browser.**
+
 ## Project URL
 
 This project was deployed on firebase at [https://isthmus-angular.web.app/](https://isthmus-angular.web.app/)
